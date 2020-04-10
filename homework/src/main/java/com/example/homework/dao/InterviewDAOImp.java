@@ -1,7 +1,7 @@
 package com.example.homework.dao;
 
 import com.example.homework.domain.Interview;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 import org.supercsv.cellprocessor.Optional;
@@ -19,30 +19,32 @@ import java.util.List;
 import java.util.Locale;
 
 @Service
+@ConfigurationProperties("application")
 public class InterviewDAOImp implements InterviewDAO {
-    @Value("${env.property.name}")
-    String loc;
+    Locale locale;
+    String fileName;
 
+    public Locale getLocale() {
+        return locale;
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
     @Override
     public List<Interview> getInterviewList() throws IOException {
-        /*System.out.println(System.getProperty("env.property.name"));
-        Locale.setDefault(Locale.ENGLISH);*/
         List<Interview> list = new ArrayList<>();
-        String CSV_FILENAME;
-        switch (loc) {
-            case "en":
-                Locale.setDefault(Locale.ENGLISH);
-                CSV_FILENAME = "source_en.csv";
-                break;
-            case "ru":
-                //Locale.setDefault(new Locale("ru_RU"));
-                CSV_FILENAME = "source_ru.csv";
-                break;
-            default:
-                CSV_FILENAME = "source_en.csv";
-        }
-        File file = ResourceUtils.getFile("classpath:" + CSV_FILENAME);
+        Locale.setDefault(locale);
+        File file = ResourceUtils.getFile("classpath:" + fileName);
         final String[] FIELD_MAPPING = new String[]{
                 "number",                   // simple field mapping (like CsvBeanReader)
                 "question",          // as above

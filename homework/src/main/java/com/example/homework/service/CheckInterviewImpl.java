@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,12 @@ public class CheckInterviewImpl implements CheckInterview{
         this.studentDAO = studentDAO;
         this.ms = ms;
     }
+
+    @PostConstruct
+    public void startApp(){
+        letsCheckInterview();
+    }
+
 
     @Override
     public Student getStudent() {
@@ -53,13 +60,15 @@ public class CheckInterviewImpl implements CheckInterview{
         student.setFirstName(scanner.nextLine());
         student.setSecondName(scanner.nextLine());
         interviewList.forEach(interview -> {
-            System.out.println(interview);
+
+            System.out.println(ms.getMessage("interview.number",null, Locale.getDefault()) + interview +
+                                ms.getMessage("interview.enter",null, Locale.getDefault()));
             student.getAnswers().add(Integer.valueOf(scanner.nextLine()));
         });
         scanner.close();
         int result = checkAnswers(interviewList, student.getAnswers());
         System.out.println(student.getFirstName() + " " + student.getSecondName() + ", " +
-                ms.getMessage("student.result1", null, Locale.getDefault())+ result +
+                ms.getMessage("student.result1", null, Locale.getDefault())  + result + " " +
                 ms.getMessage("student.result2",null, Locale.getDefault())+ interviewList.size());
 
     }

@@ -47,7 +47,7 @@ public class Interview {
         answers.forEach(s -> joiner.add((answers.indexOf(s) + 1) + ". " + s));
         /*String answersString = answers.stream().collect(Collectors.joining("\n"));
         String result = String.join("\n", answers);*/
-        return "Вопрос № " + number + ":\n" + question + "\n" +
-                joiner + "\n" + "Выберетие вариант ответа:";
+        return number + ":\n" + question + "\n" +
+                joiner + "\n";
     }
 }
