@@ -1,3 +1,15 @@
+spring:
+  profiles:
+    active: "eng"
+---
+spring:
+  profiles: ru
 application:
   locale: ru_RU
   filename: source_ru.csv
+---
+spring:
+  profiles: eng
+application:
+  locale: en
+  filename: source_en.csv
