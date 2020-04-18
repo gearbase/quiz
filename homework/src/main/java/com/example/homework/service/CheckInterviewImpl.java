@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +27,10 @@ public class CheckInterviewImpl implements CheckInterview{
         this.ms = ms;
     }
 
-    @PostConstruct
+    /*@PostConstruct
     public void startApp(){
         letsCheckInterview();
-    }
+    }*/
 
 
     @Override
@@ -65,7 +64,7 @@ public class CheckInterviewImpl implements CheckInterview{
                                 ms.getMessage("interview.enter",null, Locale.getDefault()));
             student.getAnswers().add(Integer.valueOf(scanner.nextLine()));
         });
-        scanner.close();
+        //scanner.close();
         int result = checkAnswers(interviewList, student.getAnswers());
         System.out.println(student.getFirstName() + " " + student.getSecondName() + ", " +
                 ms.getMessage("student.result1", null, Locale.getDefault())  + result + " " +

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Logging {
     //TODO
-   /* @Around("@target(com.example.homework.myannotations.ForMyLogging)")
+    /*@Around("@target(com.example.homework.myannotations.ForMyLogging)")
     public Object logAll (ProceedingJoinPoint pjp) throws Throwable {
         Object obj = pjp.proceed();
         System.out.println("Вызов метода : " + pjp.getSignature().getName());

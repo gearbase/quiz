@@ -8,9 +8,9 @@ import com.example.homework.service.CheckInterviewImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.MessageSource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -25,9 +25,9 @@ import static org.mockito.Mockito.when;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 class HomeworkApplicationTests {
-	@Mock
+	@MockBean
 	InterviewDAO interviewDAO;
-	@Mock
+	@MockBean
 	StudentDAO studentDAO;
 	@Autowired
 	MessageSource messageSource;
